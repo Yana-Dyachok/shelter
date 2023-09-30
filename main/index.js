@@ -1,3 +1,5 @@
+import './popup.js';
+import './slider.js';
 // burger menu
 
 const body = document.querySelector('body');
