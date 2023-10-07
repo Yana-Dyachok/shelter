@@ -1,8 +1,17 @@
-const sliderContainer = document.querySelector('.slider-container');
+const sliderContainer = document.querySelector('.slider-wraper');
 const slider = document.querySelector('.slider');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
-let amount = 3;
+let amount = calculateAmount(); 
+function calculateAmount() {
+  return Math.floor(slider.clientWidth / 270);
+}
+
+function updateAmountOnResize() {
+  amount = calculateAmount();
+}
+
+window.addEventListener('resize', updateAmountOnResize);
 
 async function changeCards(cardIndex, i) {
     const res = await fetch('../main/pets.json');
@@ -46,6 +55,7 @@ function getRandomCards(array, element) {
 let currentCards = getUniqueArray();
 let prevCards = getUniqueArray();
 let nextCards = getUniqueArray();
+
 getRandomCards(currentCards, createCards);
 
 // function getRandonNumb(min, max) {
