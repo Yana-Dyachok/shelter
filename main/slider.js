@@ -1,3 +1,4 @@
+import { showModal } from '../main/popup.js';
 const sliderContainer = document.querySelector('.slider-wraper');
 const slider = document.querySelector('.slider');
 const prevButton = document.querySelector('.prev');
@@ -18,8 +19,10 @@ async function changeCards(cardIndex, i) {
     const data = await res.json();
     const card = data[cardIndex];
     document.querySelectorAll('.img-friends')[i].setAttribute('src', card.img);
+    document.querySelectorAll('.img-friends')[i].id = `${i}${cardIndex}${i}${i}`;
     document.querySelectorAll('.figcaption-friends')[i].textContent = card.name;
-    document.querySelectorAll('.btn-learn-more')[i].id = cardIndex;
+    document.querySelectorAll('.figcaption-friends').id = `${i}${cardIndex}${i}`;
+    document.querySelectorAll('.btn-learn-more')[i].id = `${i}${cardIndex}`;
 }
 
 async function createCards(cardIndex, i) {
@@ -34,16 +37,21 @@ async function createCards(cardIndex, i) {
     img.setAttribute('src', card.img);
     img.setAttribute('width', '270');
     img.setAttribute('height', '270');
+    img.setAttribute('id', `0${cardIndex}`);
     figureFriends.append(img);
     const name = document.createElement('p');
     name.classList.add('figcaption-friends');
     name.textContent = card.name;
+    name.setAttribute('id', `1${cardIndex}`);
     figureFriends.append(name);
     const btnLearn = document.createElement('button');
     btnLearn.classList.add('btn-learn-more');
-    btnLearn.setAttribute('id', cardIndex);
     btnLearn.textContent = `Learn more`;
+    btnLearn.setAttribute('id', `2${cardIndex}`);
     figureFriends.append(btnLearn);
+    document.querySelectorAll('.figure-friends').forEach((btn) => {
+      btn.addEventListener('click', showModal);
+  });
 }
 
 function getRandomCards(array, element) {
@@ -57,10 +65,6 @@ let prevCards = getUniqueArray();
 let nextCards = getUniqueArray();
 
 getRandomCards(currentCards, createCards);
-
-// function getRandonNumb(min, max) {
-//     return ~~(min + Math.random() * (max - min));
-// }
 
 function getUniqueArray() {
     let array = [];
