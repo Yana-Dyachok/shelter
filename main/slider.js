@@ -1,5 +1,4 @@
 import { showModal } from '../main/popup.js';
-const sliderContainer = document.querySelector('.slider-wraper');
 const slider = document.querySelector('.slider');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');

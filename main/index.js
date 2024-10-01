@@ -1,28 +1,22 @@
 import './popup.js';
 import './slider.js';
-// burger menu
-const body = document.querySelector('body');
-const overlay = document.querySelector('.overlay');
-const burgerMenu = document.querySelector('.burger');
-const menuNav = document.querySelector('.nav');
-const navLink = document.querySelectorAll('.nav-link');
+const body = document.querySelector('body'),
+    overlay = document.querySelector('.overlay'),
+    burgerMenu = document.querySelector('.burger'),
+    menuNav = document.querySelector('.nav'),
+    navLink = document.querySelectorAll('.nav-link');
 
-const toggleActive = () => {
-  burgerMenu.classList.toggle('-active');
-  menuNav.classList.toggle('-active');
-  overlay.classList.toggle('-active');
-  body.classList.toggle('-active');
-};
+function toggleClasses() {
+    burgerMenu.classList.toggle('-active');
+    menuNav.classList.toggle('-active');
+    overlay.classList.toggle('-active');
+    body.classList.toggle('-active');
+}
 
-burgerMenu.addEventListener('click', toggleActive);
+burgerMenu.addEventListener('click', toggleClasses);
+overlay.addEventListener('click', toggleClasses);
 
-overlay.addEventListener('click', () => {
-  burgerMenu.classList.remove('-active');
-  menuNav.classList.remove('-active');
-  overlay.classList.remove('-active');
-  body.classList.remove('-active');
-});
-
-navLink.forEach(el => {
-  el.addEventListener('click', toggleActive);
+navLink.forEach((el) => {
+    el.addEventListener('click', ()=> {
+        if(overlay.classList.contains('-active'))toggleClasses()});
 });

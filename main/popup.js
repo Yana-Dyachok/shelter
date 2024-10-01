@@ -1,6 +1,4 @@
 const body = document.querySelector('body');
-const cards = document.querySelectorAll('.figure-friends');
-const btnLearn = document.querySelectorAll('.btn-learn-more');
 const closePopupBtn = document.querySelector('.close-popup-btn');
 const modalPopup = document.querySelector('.modal-popup');
 const modalWindow = document.querySelector('.modal-window');
